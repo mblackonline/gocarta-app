@@ -8,9 +8,10 @@ interface BikeStationListProps {
   loading: boolean;
   error: Error | null;
   onRefresh?: () => void;
+  ListHeaderComponent?: React.ComponentType<any> | React.ReactElement | null;
 }
 
-export function BikeStationList({ stations, loading, error, onRefresh }: BikeStationListProps) {
+export function BikeStationList({ stations, loading, error, onRefresh, ListHeaderComponent }: BikeStationListProps) {
   if (loading && stations.length === 0) {
     return (
       <ThemedView style={styles.centerContainer}>
@@ -106,6 +107,7 @@ export function BikeStationList({ stations, loading, error, onRefresh }: BikeSta
       contentContainerStyle={styles.listContainer}
       refreshing={loading}
       onRefresh={onRefresh}
+      ListHeaderComponent={ListHeaderComponent}
     />
   );
 }
@@ -128,8 +130,8 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   stationCard: {
-    padding: 16,
-    marginBottom: 12,
+    padding: 12,
+    marginBottom: 8,
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#ddd',
@@ -151,15 +153,15 @@ const styles = StyleSheet.create({
   address: {
     fontSize: 12,
     opacity: 0.7,
-    marginBottom: 12,
+    marginBottom: 8,
   },
   availabilityContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingVertical: 12,
+    paddingVertical: 8,
     borderTopWidth: 1,
     borderTopColor: '#eee',
-    marginBottom: 8,
+    marginBottom: 6,
   },
   availabilityItem: {
     alignItems: 'center',
